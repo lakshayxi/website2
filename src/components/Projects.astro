@@ -11,7 +11,7 @@ import ProjectCard from './ProjectCard.astro';
       name="CacheVista" 
       year="2026" 
       tags="PyTorch, CLIP, FAISS, Python" 
-      desc="3-layer hybrid cache to stop VLMs from re-encoding images they've already seen."
+      desc="A three layer hybrid cache designed to prevent VLMs from re-encoding previously seen images. The system combines exact hash matching with FAISS similarity detection and a trained MLP drift predictor to maintain zero accuracy loss while significantly reducing compute."
       slug="cachevista"
       github="https://github.com/lakshayxi/CacheVista"
     />
@@ -19,7 +19,7 @@ import ProjectCard from './ProjectCard.astro';
       name="SMLM" 
       year="2026" 
       tags="PyTorch, ViT, Transformer, Python" 
-      desc="Vision-language model built from scratch. Found and fixed a causal masking bug."
+      desc="A vision language model built from scratch to understand the mechanics of multimodal alignment. I developed two variants at 28M and 6M parameters, uncovering critical insights about causal masking and the importance of parameter to token ratios in small scale training."
       slug="smlm"
       github="https://github.com/lakshayxi/SMLM"
     />
@@ -27,7 +27,7 @@ import ProjectCard from './ProjectCard.astro';
       name="Glimpse" 
       year="2026" 
       tags="PyTorch, CLIP, LoRA, Python" 
-      desc="Empirical comparison of four vision-language fusion strategies on VQA-v2."
+      desc="An empirical study of vision language fusion strategies on VQA-v2. I implemented LoRA from scratch to fine-tune a tiny fraction of parameters, eventually finding that bilinear fusion provided the most robust alignment without catastrophic forgetting."
       slug="glimpse"
       github="https://github.com/lakshayxi/glimpse"
     />
@@ -35,7 +35,7 @@ import ProjectCard from './ProjectCard.astro';
       name="Maya" 
       year="2026" 
       tags="PyTorch, NLP, Python" 
-      desc="Tested five architectures for Hindi next-word prediction."
+      desc="Next word prediction for Hindi using a custom tokenizer. By testing architectures from Vanilla RNNs to BiLSTMs, I demonstrated that simpler models can often outperform complex ones in short context scenarios for morphologically rich languages."
       slug="maya"
       github="https://github.com/lakshayxi/maya"
     />
@@ -43,7 +43,7 @@ import ProjectCard from './ProjectCard.astro';
       name="PaperScope" 
       year="2026" 
       tags="Python, OpenReview API, Claude Code" 
-      desc="Pulls real peer reviews from 35+ ML venues and builds per-venue calibration files."
+      desc="A tool that quantifies optimism bias in peer reviews across 35 ML venues. It pulls live data from OpenReview to build per-venue calibration profiles, allowing researchers to interpret reviews relative to historical distributions rather than raw scores."
       slug="paperscope"
       github="https://github.com/lakshayxi/PaperScope"
     />
