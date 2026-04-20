@@ -1,0 +1,16 @@
+---
+const currentYear = new Date().getFullYear();
+---
+<footer>
+  Lakshay Saini · {currentYear} · built with Astro
+</footer>
+
+<style>
+  footer {
+    padding: 40px 0 32px 0;
+    font-size: var(--size-xs);
+    color: var(--dim);
+    border-top: 1px solid var(--border);
+    margin-top: 80px;
+  }
+</style>
