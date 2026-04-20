@@ -1,36 +1,26 @@
-# Lakshay Saini Portfolio
+# lakshay saini
 
-A minimalist portfolio built with Astro, focusing on high performance and a clean monospace aesthetic. This site serves as a central hub for my research in machine learning robustness and various engineering projects.
+this is my personal hub for exploring where machine learning models break. i build things to understand them from the ground up, focusing lately on vision language models and efficient inference systems. i try to optimize for consistency over intensity, and for depth over surface level progress.
 
-## Project Goals
+## what i do
 
-* Showcase research in model robustness, adversarial ML, and multimodal alignment.
-* Maintain a brutalist, high-contrast design with zero dependencies on CSS frameworks.
-* Optimize for static delivery and instant load times.
+* research on model robustness and adversarial attacks to bridge the gap between benchmarks and reality.
+* experiments with multimodal alignment and fusion strategies.
+* quantitative signal construction and backtesting at worldquant.
 
-## Core Technologies
+## the tech
 
-* Astro 6.1.8
-* Vanilla CSS (Custom tokens and components)
-* IBM Plex Mono
-* GitHub Actions for automated CI/CD
+this site is a brutalist experiment built with astro 6.1.8 and plain css. no frameworks, no icons, no rounded corners. strictly ibm plex mono.
 
-## Development
+## local run
 
-### Setup
-
-Clone the repository and install the project dependencies:
+if you want to run this locally, you will need node 22 or higher:
 
 ```bash
 npm install
+npm run dev
 ```
 
-### Commands
+## build
 
-* `npm run dev` - Starts a local development server at localhost:4321
-* `npm run build` - Generates the static production site in the dist/ folder
-* `npm run preview` - Previews the production build locally
-
-## Deployment
-
-The site is automatically built and deployed to GitHub Pages via the workflow defined in `.github/workflows/deploy.yml` on every push to the main branch.
+production builds are handled by github actions and deployed to github pages automatically on every push to main.
