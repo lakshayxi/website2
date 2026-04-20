@@ -1,0 +1,58 @@
+---
+import ProjectCard from './ProjectCard.astro';
+---
+<section id="projects">
+  <hr class="section-rule" />
+  <p class="label">02 — projects</p>
+  <h2>Things I built</h2>
+
+  <div class="project-list">
+    <ProjectCard 
+      name="CacheVista" 
+      year="2026" 
+      tags="PyTorch, CLIP, FAISS, Python" 
+      desc="3-layer hybrid cache to stop VLMs from re-encoding images they've already seen."
+      slug="cachevista"
+    />
+    <ProjectCard 
+      name="SMLM" 
+      year="2026" 
+      tags="PyTorch, ViT, Transformer, Python" 
+      desc="Vision-language model built from scratch. Found and fixed a causal masking bug."
+      slug="smlm"
+    />
+    <ProjectCard 
+      name="Glimpse" 
+      year="2026" 
+      tags="PyTorch, CLIP, LoRA, Python" 
+      desc="Empirical comparison of four vision-language fusion strategies on VQA-v2."
+      slug="glimpse"
+    />
+    <ProjectCard 
+      name="Maya" 
+      year="2026" 
+      tags="PyTorch, NLP, Python" 
+      desc="Tested five architectures for Hindi next-word prediction."
+      slug="maya"
+    />
+    <ProjectCard 
+      name="PaperScope" 
+      year="2026" 
+      tags="Python, OpenReview API, Claude Code" 
+      desc="Pulls real peer reviews from 35+ ML venues and builds per-venue calibration files."
+      slug="paperscope"
+    />
+    <div class="bottom-border"></div>
+  </div>
+</section>
+
+<style>
+  h2 {
+    font-size: var(--size-xl);
+    font-weight: 600;
+    margin: 12px 0 48px 0;
+  }
+  .bottom-border {
+    border-top: 1px solid var(--border);
+  }
+</style>
