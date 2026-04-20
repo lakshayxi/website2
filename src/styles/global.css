@@ -1,0 +1,72 @@
+/* === TOKENS === */
+:root {
+  --black: #0a0a0a;
+  --white: #f0f0f0;
+  --dim: #888888;
+  --accent: #f0f0f0;         /* same as white — accent is weight, not color */
+  --border: #2a2a2a;
+  --font: 'IBM Plex Mono', monospace;
+
+  --size-xs:  11px;
+  --size-sm:  13px;
+  --size-base: 15px;
+  --size-lg:  18px;
+  --size-xl:  24px;
+  --size-2xl: 36px;
+  --size-3xl: 56px;
+
+  --line-tight: 1.2;
+  --line-loose: 1.7;
+
+  --max-width: 780px;
+  --col-gap: 40px;
+}
+
+/* === RESET === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font);
+  font-size: var(--size-base);
+  line-height: var(--line-loose);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--dim);
+}
+
+/* === UTILITY === */
+.label {
+  font-size: var(--size-xs);
+  color: var(--dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 80px 0 48px 0;
+}
+
+/* No transitions unless explicitly defined per element */
+* { transition: none; }
