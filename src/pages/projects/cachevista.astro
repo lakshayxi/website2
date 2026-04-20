@@ -10,7 +10,7 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
   <p>Vision-Language Models (VLMs) are computationally expensive. When processing video streams or repeated queries, they often re-encode images they have already processed, wasting significant compute and increasing latency.</p>
 
   <h2>What I built</h2>
-  <p>I built a 3-layer hybrid cache. It uses exact hash matching for identical images, FAISS for near-duplicate detection via embedding similarity, and a trained MLP drift predictor to decide when a cached representation is no longer valid due to distribution shift.</p>
+  <p>I built a three layer hybrid cache. It uses exact hash matching for identical images, FAISS for near-duplicate detection via embedding similarity, and a trained MLP drift predictor to decide when a cached representation is no longer valid due to distribution shift.</p>
 
   <h2>What I found</h2>
   <p>The system reduces redundant encoding by up to 40% on static camera feeds with zero measurable loss in downstream task accuracy. The MLP predictor was surprisingly effective at catching lighting-induced drift.</p>

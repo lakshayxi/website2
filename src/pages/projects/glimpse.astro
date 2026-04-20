@@ -7,11 +7,11 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
   tags="PyTorch, CLIP, LoRA, Python"
 >
   <h2>The question</h2>
-  <p>Which vision-language fusion strategy is most effective for Visual Question Answering (VQA) when compute is constrained?</p>
+  <p>Which vision language fusion strategy is most effective for Visual Question Answering (VQA) when compute is constrained?</p>
 
   <h2>What I built</h2>
-  <p>I conducted an empirical comparison of four fusion strategies on the VQA-v2 dataset. To enable efficient fine-tuning, I implemented LoRA (Low-Rank Adaptation) from scratch, targeting only 0.19% of total parameters.</p>
+  <p>I conducted an empirical comparison of four fusion strategies on the VQA v2 dataset. To enable efficient fine-tuning, I implemented LoRA (Low-Rank Adaptation) from scratch, targeting only 0.19% of total parameters.</p>
 
   <h2>What I found</h2>
-  <p>Cross-attention fusion outperformed simple concatenation and gated mechanisms. The scratch-built LoRA implementation achieved 98% of full fine-tuning performance without any catastrophic forgetting.</p>
+  <p>Cross-attention fusion outperformed simple concatenation and gated mechanisms. The scratch built LoRA implementation achieved 98% of full fine-tuning performance without any catastrophic forgetting.</p>
 </ProjectLayout>
