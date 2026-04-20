@@ -9,7 +9,7 @@ const { name, year, tags, desc, slug, github } = Astro.props;
   <p class="project-tags">{tags}</p>
   <p class="project-desc">{desc}</p>
   <div class="links-row">
-    <a href={`/projects/${slug}`} class="project-link">→ read more</a>
+    <a href={`projects/${slug}/`} class="project-link">→ read more</a>
     {github && <a href={github} target="_blank" rel="noopener noreferrer" class="project-link github-link">github ↗</a>}
   </div>
 </div>
