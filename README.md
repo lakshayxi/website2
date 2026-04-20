@@ -1,43 +1,43 @@
-# Astro Starter Kit: Minimal
+# Lakshay Saini Portfolio
 
-```sh
-npm create astro@latest -- --template minimal
+A minimalist, brutalist portfolio website built with Astro 4.x. This project focuses on high performance, static generation, and a clean monospace aesthetic to showcase ML research and engineering projects.
+
+## Tech Stack
+
+* Framework: Astro 4.x (Static output)
+* Styling: Plain CSS
+* Fonts: IBM Plex Mono (Weights 400 and 600)
+* Deployment: GitHub Pages
+
+## Architecture
+
+The site is designed as a single column, left aligned document. It follows a modular structure where sections like Research, Projects, and Experience are built as independent Astro components. All styling is centralized in a global CSS file using tokens for consistent spacing and typography.
+
+## Local Development
+
+Prerequisites: Node.js 20 or higher.
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open http://localhost:4321 in your browser.
+
+## Build and Deployment
+
+To generate the static site manually:
+
+```bash
+npm run build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The output will be located in the `dist/` directory. Deployment is automated via GitHub Actions on every push to the main branch.
 
-## 🚀 Project Structure
+## License
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+MIT
