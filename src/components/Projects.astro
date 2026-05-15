@@ -27,7 +27,7 @@ import ProjectCard from './ProjectCard.astro';
       name="Glimpse" 
       year="2026" 
       tags="PyTorch, CLIP, LoRA, Python" 
-      desc="An empirical study of vision language fusion strategies on VQA v2. I implemented LoRA from scratch to fine-tune a tiny fraction of parameters, eventually finding that bilinear fusion provided the most robust alignment without catastrophic forgetting."
+      desc="An empirical study of eight vision language fusion strategies on VQA v2 with frozen CLIP features. I implemented LoRA from scratch targeting 0.19% of parameters, and found that the simplest approach won: decomposing CLIP's existing alignment into three geometric signals outperformed every cross-attention variant I tested."
       slug="glimpse"
       github="https://github.com/lakshayxi/glimpse"
     />
