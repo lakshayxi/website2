@@ -6,12 +6,12 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
   year="2026" 
   tags="PyTorch, CLIP, FAISS, Python"
 >
-  <h2>The question</h2>
-  <p>Vision-Language Models (VLMs) are computationally expensive. When processing video streams or repeated queries, they often re-encode images they have already processed, wasting significant compute and increasing latency.</p>
+  <h2>The problem</h2>
+  <p>Every time a VLM sees an image, it runs it through a full CLIP encoder pass. In video streams or multi-turn conversations where the same frame keeps appearing, that's a lot of compute going toward producing the exact same embedding you already computed two seconds ago. Nobody was caching this, so I built a cache.</p>
 
-  <h2>What I built</h2>
-  <p>I built a three layer hybrid cache. It uses exact hash matching for identical images, FAISS for near-duplicate detection via embedding similarity, and a trained MLP drift predictor to decide when a cached representation is no longer valid due to distribution shift.</p>
+  <h2>How it works</h2>
+  <p>The cache has three layers, each handling a different kind of redundancy. The first layer does MD5 hashing — if two images are byte-for-byte identical, skip encoding entirely, return the cached embedding in microseconds. The second layer runs FAISS cosine similarity over stored embeddings; if an incoming image is close enough to something already in the cache, it gets the cached result too. The third layer is where it gets interesting: a small MLP trained to predict whether a cached embedding has drifted far enough from the current context that it should be invalidated. This handles cases like gradual lighting changes on a static camera feed, where frames look similar but the scene has meaningfully shifted.</p>
 
   <h2>What I found</h2>
-  <p>The system reduces redundant encoding by up to 40% on static camera feeds with zero measurable loss in downstream task accuracy. The MLP predictor was surprisingly effective at catching lighting-induced drift.</p>
+  <p>On static camera feeds, the system cuts redundant CLIP encoding by 40% with no measurable accuracy loss on downstream tasks. The MLP drift predictor was the part I expected least to work well, but it turned out to be surprisingly good at catching lighting-induced shifts that pure similarity thresholds would miss. The hardest part of the whole project was setting the right FAISS similarity threshold — too tight and you miss obvious duplicates, too loose and you start returning stale embeddings for images that have actually changed.</p>
 </ProjectLayout>

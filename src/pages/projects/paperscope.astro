@@ -6,11 +6,11 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
   year="2026" 
   tags="Python, OpenReview API, Claude Code"
 >
-  <h2>The question</h2>
-  <p>Peer review quality and calibration vary wildly across different ML venues. How can we quantify this discrepancy?</p>
+  <h2>The problem</h2>
+  <p>A score of 6 at ICLR doesn't mean the same thing as a score of 6 at AAAI. Reviewers at different venues have different score baselines, different thresholds for what counts as a fatal flaw, and different unwritten criteria that never appear in the official reviewer guidelines. If you get a review back and don't know the venue's calibration, you're reading a number without a scale.</p>
 
   <h2>What I built</h2>
-  <p>A tool that pulls real peer review data from over 35 ML venues via the OpenReview API. It constructs per venue calibration files. I packaged this as a specialized skill for Claude Code.</p>
+  <p>PaperScope fetches real peer review data from over 35 ML, NLP, and vision venues via the OpenReview API — ICLR, NeurIPS, ICML, CVPR, ACL, EMNLP, AAAI, KDD, and more, spanning 2023 through 2026. For each venue it builds a calibration profile: actual score distributions for accepted and rejected papers, the language patterns that show up in reviews leaning toward rejection, and the hidden criteria that consistently appear in negative decisions but don't make it into official guidelines. I packaged the whole thing as a Claude Code skill so you can ask Claude to review a paper and get feedback grounded in real venue-specific context, not generic AI commentary.</p>
 
   <h2>What I found</h2>
-  <p>There is a measurable optimism
+  <p>There is a measurable and consistent optimism bias in peer reviews across venues, but the magnitude varies a lot. Some venues have reviewers who score generously and then reject anyway based on factors the scores don't capture. Others have tighter score-to-decision correlations. The most useful output of the project wasn't the score distributions themselves but the language calibration — knowing that certain phrases in a review reliably predict rejection even when the score looks borderline tells you a lot more than the number alone.</p>

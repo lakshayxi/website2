@@ -7,11 +7,11 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
   tags="PyTorch, NLP, Python"
 >
   <h2>The question</h2>
-  <p>How do various RNN architectures compare when tasked with next word prediction for morphologically rich languages like Hindi?</p>
+  <p>Hindi is morphologically rich — words carry a lot of grammatical information through inflection, and that creates sparsity problems that English-focused architectures weren't really designed for. I wanted to know which architecture handles next-word prediction best when the training data is small and the language is hard.</p>
 
-  <h2>What I built</h2>
-  <p>I tested five different architectures, ranging from vanilla RNNs to stacked BiLSTMs. I developed a custom tokenizer specifically for Hindi to better handle subword units and inflection.</p>
+  <h2>What I ran</h2>
+  <p>Five architectures trained on 10,000 sentences from CC-100 Hindi: a count-based bigram baseline with Laplace smoothing, a single-layer Vanilla RNN, a single-layer LSTM with weight tying, the same LSTM with 0.3 dropout, and a two-layer stacked LSTM. I also included a BiLSTM as a non-causal reference ceiling — it sees future tokens, so its numbers aren't directly comparable, but it shows where the performance ceiling sits if you remove the causal constraint. Evaluation was on 2,000 held-out sentences, averaged over three seeds, with UNK tokens excluded from accuracy calculations.</p>
 
   <h2>What I found</h2>
-  <p>Surprisingly, a well-tuned Vanilla RNN beat several LSTM variants in short range prediction. However, BiLSTMs showed a clear ceiling in performance, highlighting the importance of future context in Hindi sentence structure.</p>
+  <p>The Vanilla RNN won. 18.7% top-1 accuracy, 218 perplexity, 285K parameters — better than every LSTM variant on every metric. The stacked LSTM, which has 1.4M parameters, came in below even the plain LSTM. With 10,000 training sentences, the extra capacity in LSTM and stacked LSTM just means faster overfitting. Dropout recovered some of the gap for the single-layer LSTM but couldn't push it past the Vanilla RNN. The bigram baseline sat at 1245 perplexity, which puts the scale of the gap in perspective. The non-causal BiLSTM hit 83.9% top-1 accuracy, which shows how much future context matters for Hindi sentence structure — but that's the context window you don't get at inference time, so it's the ceiling you're always chasing.</p>
 </ProjectLayout>

@@ -7,11 +7,11 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
   tags="PyTorch, CLIP, LoRA, Python"
 >
   <h2>The question</h2>
-  <p>Which vision language fusion strategy is most effective for Visual Question Answering (VQA) when compute is constrained?</p>
+  <p>CLIP already knows how to align images and text. If you freeze it and just train a small fusion head on top, does the choice of fusion strategy even matter? I ran eight different approaches on VQA v2 to find out.</p>
 
-  <h2>What I built</h2>
-  <p>I conducted an empirical comparison of four fusion strategies on the VQA v2 dataset. To enable efficient fine-tuning, I implemented LoRA (Low-Rank Adaptation) from scratch, targeting only 0.19% of total parameters.</p>
+  <h2>What I ran</h2>
+  <p>I precomputed CLIP embeddings for the entire dataset once and saved them to disk, then trained only the fusion heads on top of those fixed features. Each image gives a global 512-d CLS vector plus 49 patch tokens from layer 12. I tried eight different ways of combining image and text features into a yes/no answer: simple MLP concatenation, bilinear projection, cross-attention over patch tokens, multi-scale spatial attention, token-level grounding, stacked cross-attention blocks, a layer-adaptive gating approach that pulls from CLIP layers 4, 8, and 12, and GeometryFusion, which just decomposes what CLIP already computed into cosine similarity, a residual vector, and an element-wise interaction term. I also implemented LoRA from scratch and injected it into the last four blocks of CLIP's visual encoder — rank 8, roughly 295K trainable parameters out of CLIP's 150M total.</p>
 
   <h2>What I found</h2>
-  <p>Cross-attention fusion outperformed simple concatenation and gated mechanisms. The scratch built LoRA implementation achieved 98% of full fine-tuning performance without any catastrophic forgetting.</p>
+  <p>GeometryFusion won at 63.3% accuracy, with the same parameter count as the simplest model in the comparison. It doesn't learn any projections — it just hands three pre-computed signals to an MLP and gets out of the way. The cross-attention variants underperformed despite being architecturally more sophisticated, and the reason makes sense in hindsight: CLIP's layer-12 patch tokens have already run through 12 rounds of global self-attention mixing. By that point, each "patch" token contains information from the whole image, not just its local region. Attending over 49 near-identical summaries of the same scene adds nothing. More parameters made things worse across the board — every model hit early stopping before epoch 16, which tells you the signal in the frozen features just doesn't support more capacity. A separate end-to-end ViT+BERT track, where the encoders could actually adapt, reached 67.6% and confirmed that the frozen-CLIP ceiling is real.</p>
 </ProjectLayout>

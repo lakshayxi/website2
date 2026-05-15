@@ -6,12 +6,15 @@ import ProjectLayout from '../../layouts/ProjectLayout.astro';
   year="2026" 
   tags="PyTorch, ViT, Transformer, Python"
 >
-  <h2>The question</h2>
-  <p>Can a vision language model be built from the ground up with a focus on data efficiency rather than just raw scale?</p>
+  <h2>The motivation</h2>
+  <p>I wanted to understand how vision-language models actually work, not just use one. The only real way to do that is to build one from scratch and watch it fail in interesting ways. So I did.</p>
 
-  <h2>What I built</h2>
-  <p>A multimodal transformer architecture combining a ViT encoder with a decoder only language model. During development, I identified and fixed a causal masking bug that was causing the model to copy input tokens instead of predicting the next one.</p>
+  <h2>The architecture</h2>
+  <p>A ViT encoder splits each image into 196 non-overlapping 16x16 patches and runs them through six transformer layers. A two-layer MLP projection bridges the vision space into the language space. A four-layer causal transformer decoder then takes the projected image embedding as a visual prefix and generates caption tokens one at a time. I built two variants: a 28M parameter full model and a 6M parameter small one, both trained on COCO captions with a BPE tokenizer trained from scratch on the same data. Tied input/output embeddings in the decoder, pre-norm formulation throughout, learned positional embeddings in the ViT.</p>
+
+  <h2>The bug that taught me the most</h2>
+  <p>Midway through training, the model's outputs looked weirdly coherent but completely wrong — it was essentially echoing its own inputs instead of generating new tokens. After a few hours of debugging I found a causal masking error in the decoder: the mask wasn't being applied correctly, so the model could attend to future tokens during training and just learned to copy them. Fixing the mask immediately changed the loss trajectory. That one bug gave me a clearer intuition about autoregressive training than probably anything else I've read.</p>
 
   <h2>What I found</h2>
-  <p>Data quality and the parameter to token ratio are more critical than raw parameter count. Even a smaller model can outperform larger ones if the alignment phase is handled with high-signal data.</p>
+  <p>The parameter-to-training-token ratio matters a lot more than absolute parameter count. The 6M model, trained on the same data as the 28M, came closer to matching it than I expected — the bottleneck was data volume, not model capacity. High-signal alignment data during the projection training phase had a disproportionate effect on final caption quality. More parameters without more data just overfits faster.</p>
 </ProjectLayout>
